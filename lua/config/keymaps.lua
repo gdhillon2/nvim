@@ -2,6 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+-- can press escape in terminal mode to exit
+vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
+
+-- closes a tab with c-C
+vim.keymap.set("n", "<c-C>", "<Cmd>bd<CR>")
+
 -- shows spaces as dots
 vim.cmd("set list")
 --vim.cmd("set lcs+=space:·")
