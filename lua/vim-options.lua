@@ -6,6 +6,8 @@ vim.cmd("set softtabstop=2")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 
+vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
+
 -- shows spaces as dots
 vim.cmd("set list")
 --vim.cmd("set lcs+=space:·")
