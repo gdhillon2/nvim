@@ -13,9 +13,8 @@ return {
     "hrsh7th/nvim-cmp",
     config = function()
       local cmp = require("cmp")
-      require("luasnip.loaders.from_vscode")
+      require("luasnip.loaders.from_vscode").lazy_load()
       cmp.setup({
-        preselect = cmp.PreselectMode.None,
         snippet = {
           -- REQUIRED - you must specify a snippet engine
           expand = function(args)

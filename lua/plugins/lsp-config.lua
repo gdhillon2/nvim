@@ -16,8 +16,8 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local lspconfig = require("lspconfig")
 			-- Setup lua_ls
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
@@ -25,6 +25,9 @@ return {
 			lspconfig.clangd.setup({
 				capabilities = capabilities,
 			})
+      lspconfig.tsserver.setup({
+        capabilities = capabilities,
+      })
 
 			-- Setup clangd with options
 			lspconfig.clangd.setup({
