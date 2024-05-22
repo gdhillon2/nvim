@@ -10,16 +10,27 @@ vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
 
 vim.opt.clipboard:append("unnamedplus")
 
+-- Set .ejs files to be recognized as HTML
+vim.api.nvim_exec(
+  [[
+  augroup ejs_ft
+    autocmd!
+    autocmd BufRead,BufNewFile *.ejs set filetype=html
+  augroup END
+]],
+  false
+)
+
 -- shows spaces as dots
 vim.cmd("set list")
 --vim.cmd("set lcs+=space:·")
 vim.opt.listchars = {
-	space = "⋅",
-	tab = "⋅⋅",
-	nbsp = "␣",
-	trail = "•",
-	extends = "⟩",
-	precedes = "⟨",
+  space = "⋅",
+  tab = "⋅⋅",
+  nbsp = "␣",
+  trail = "•",
+  extends = "⟩",
+  precedes = "⟨",
 }
 
 vim.cmd([[
