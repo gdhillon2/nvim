@@ -5,23 +5,42 @@ return {
     },
     config = function()
         local null_ls = require("null-ls")
-
         null_ls.setup({
             sources = {
-                null_ls.builtins.formatting.prettier,
-                -- Add other sources if needed
+                null_ls.builtins.formatting.clang_format.with({
+                    filetypes = { "c", "cpp" },
+                    extra_args = {
+                        "-style={IndentWidth: 4, UseTab: Never, TabWidth: 4}"
+                    },
+                }),
+                -- Keep Prettier for other file types if needed
+                null_ls.builtins.formatting.prettier.with({
+                    extra_args = {
+                        "--tab-width", "4",
+                        "--use-tabs", "false"
+                    }
+                }),
             },
         })
 
-        -- Custom function to format and then indent
-        local function format_and_indent()
-            vim.lsp.buf.format({ async = true }) -- Format the buffer asynchronously
-            vim.defer_fn(function()
-                vim.cmd('normal! gg=G')          -- Auto-indent the entire file
-            end, 100)                            -- Delay to ensure formatting completes
-        end
+        -- Set up the keymap for formatting
+        vim.keymap.set("n", "<leader>gf", function()
+            vim.lsp.buf.format({ async = true })
+        end, { desc = "Format file" })
 
-        -- Set up the keymap
-        vim.keymap.set("n", "<leader>gf", format_and_indent, {})
+        -- Set global options for indentation
+        vim.opt.tabstop = 4
+        vim.opt.shiftwidth = 4
+        vim.opt.expandtab = true
+
+        -- Set specific options for C files
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "c",
+            callback = function()
+                vim.bo.tabstop = 4
+                vim.bo.shiftwidth = 4
+                vim.bo.expandtab = true
+            end
+        })
     end,
 }
