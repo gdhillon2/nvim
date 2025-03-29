@@ -7,6 +7,8 @@ vim.cmd("set expandtab")
 vim.cmd("set number")
 vim.cmd("set relativenumber")
 
+vim.cmd [[autocmd VimEnter * colorscheme carbonfox]]
+
 -- keybind for esc to get me out of terminal mode
 vim.api.nvim_set_keymap("t", "<ESC>", "<C-\\><C-n>", { noremap = true })
 
@@ -53,17 +55,17 @@ vim.api.nvim_exec(
 	false
 )
 
--- shows spaces as dots
-vim.cmd("set list")
---vim.cmd("set lcs+=space:·")
-vim.opt.listchars = {
-	space = "⋅",
-	tab = "⋅⋅",
-	nbsp = "␣",
-	trail = "•",
-	extends = "⟩",
-	precedes = "⟨",
-}
+---- shows spaces as dots
+--vim.cmd("set list")
+----vim.cmd("set lcs+=space:·")
+--vim.opt.listchars = {
+--	space = "⋅",
+--	tab = "⋅⋅",
+--	nbsp = "␣",
+--	trail = "•",
+--	extends = "⟩",
+--	precedes = "⟨",
+--}
 
 vim.cmd([[
 augroup MyHighlighting

@@ -7,12 +7,6 @@ return {
         local null_ls = require("null-ls")
         null_ls.setup({
             sources = {
-                null_ls.builtins.formatting.clang_format.with({
-                    filetypes = { "c", "cpp" },
-                    extra_args = {
-                        "-style={IndentWidth: 4, UseTab: Never, TabWidth: 4}"
-                    },
-                }),
                 -- Keep Prettier for other file types if needed
                 null_ls.builtins.formatting.prettier.with({
                     extra_args = {
